@@ -21,8 +21,8 @@ function prime(x) { // 333 이하의 소수 판정하기
 var specA = new Array(5); // spec : 0(hit point), 1(att), 2(def), 3(critical/normal), 4(probability of critical)
 var specB = new Array(5);
 var length = new Array(2); // length of a, b
-var unitA = new Array(100);
-var unitB = new Array(100);
+var unitA = [];
+var unitB = [];
 var turn;
 var damage;
 var random;
@@ -39,6 +39,25 @@ speed = 5; //수정가능
 length[0] = nameA.length;
 length[1] = nameB.length;
 
+for (var i = 0; i < nameA.length; ++i) {
+  var ucode = nameA.charCodeAt(i);
+  if (ucode <= 127) {
+    unitA = unitA.concat([ucode]);
+  }
+  else {
+    unitA = unitA.concat([ucode & 0xff, ucode / 256 >>> 0]);
+  }
+}
+
+for (var i = 0; i < nameB.length; ++i) {
+  var ucode = nameB.charCodeAt(i);
+  if (ucode <= 127) {
+    unitB = unitB.concat([ucode]);
+  }
+  else {
+    unitB = unitB.concat([ucode & 0xff, ucode / 256 >>> 0]);
+  }
+}
 //speed
 if(speed == 0) { real_speed = 2000; }
 else if(speed == 1) { real_speed = 1500; }
@@ -53,11 +72,12 @@ else if(speed == 9) { real_speed = 100; }
 else { real_speed = 750; }
 
 // turn
-if(nameA > nameB) { turn = 1; }
-else if(nameA < nameB) { turn = 0; }
+if(unitA > unitB) { turn = 1; }
+else if(unitA < unitB) { turn = 0; }
 
 for(i = 0; unitA[i] == unitB[i]; i++)
 {
   if(unitA[i+1] > unitB[i+1]) { turn = 1; }
   else if(unitA[i+1] < unitB[i+1]) { turn = 0; }
 }
+
