@@ -18,3 +18,14 @@ function prime(x) { // 333 이하의 소수 판정하기
   return prime;
 }
 
+var specA = new Array(5); // spec : 0(hit point), 1(att), 2(def), 3(critical/normal), 4(probability of critical)
+var specB = new Array(5);
+var length = new Array(2); // length of a, b
+var unitA = new Array(100);
+var unitB = new Array(100);
+var turn;
+var damage;
+var random;
+var speed;
+var real_speed;
+var sosu;
