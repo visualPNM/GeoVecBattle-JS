@@ -53,11 +53,11 @@ else if(speed == 9) { real_speed = 100; }
 else { real_speed = 750; }
 
 // turn
-if(nameA > nameB) { turn = 1; }
-else if(nameA < nameB) { turn = 0; }
+if(unit[0][0] > unit[1][0]) { turn = 1; }
+else if(unit[0][0] < unit[1][0]) { turn = 0; }
 
-for(i = 0; unitA[i] == unitB[i]; i++)
+for(i = 0; unit[0][i] == unit[1][i]; i++)
 {
-  if(unitA[i+1] > unitB[i+1]) { turn = 1; }
-  else if(unitA[i+1] < unitB[i+1]) { turn = 0; }
+  if(unit[0][i+1] > unit[1][i+1]) { turn = 1; }
+  else if(unit[0][i+1] < unit[1][i+1]) { turn = 0; }
 }
